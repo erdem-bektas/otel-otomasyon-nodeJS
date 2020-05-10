@@ -1,0 +1,21 @@
+block stylesheet
+  link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js")
+  link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css")
+  
+block script
+  script(src='https://code.jquery.com/jquery-3.1.1.min.js', integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=', crossorigin='anonymous')
+
+
+block header
+  .ui.inverted.segment
+    .ui.inverted.secondary.pointing.menu
+      a.item(href='/')
+        | Ana Sayfa
+      a.item(href='/musteriIslemleri')
+        | Müşteri İşlemleri
+      a.item(href='/odaIslemleri')
+        | Oda İşlemleri
+      .right.menu
+        a.ui.item(href='https://github.com/actasalways/otel-otomasyon-nodeJS', target='_blank', rel='noopener noreferrer')
+          i.github.icon
+
