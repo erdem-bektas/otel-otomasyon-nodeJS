@@ -21,10 +21,6 @@ const RoomSchema = new Schema({
     dateOfExit:{
         type:Date,
         default:Date.now 
-    },
-    howManyBeds:{
-        type:Number,
-        required:true
     }
 
 
