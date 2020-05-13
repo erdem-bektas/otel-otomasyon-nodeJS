@@ -21,6 +21,14 @@ const RoomSchema = new Schema({
     dateOfExit:{
         type:Date,
         default:Date.now 
+    },
+    isUsable:{
+        type:Boolean,
+        default:true
+    },
+    capacityOfTheRoom:{
+        type:Number,
+        default:1
     }
 
 
