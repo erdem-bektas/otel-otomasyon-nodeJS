@@ -5,10 +5,9 @@ const router = express.Router();
 const Customer = require('../models/Customer');
 const Room = require('../models/Room');
 
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
-   
 
 router.get('/newcustomer', (req, res) => {
     const customer = new Customer({
@@ -25,7 +24,6 @@ router.get('/newcustomer', (req, res) => {
     });
 });
 
-
 router.get('/newroom', (req, res) => {
   const room = new Room({
     no: 1,
@@ -41,6 +39,9 @@ router.get('/newroom', (req, res) => {
   });
 });
 
+router.post('/',(req,res)=>{
+  res.json({status:1});
+});
 
 
 module.exports = router;

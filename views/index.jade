@@ -1,1 +1,11 @@
 extends layout
+
+block content 
+    .ui.inverted.segment
+        .ui.container
+
+            form(method='post')
+                button.ui.button.inverted.yellow Okay
+                br
+                br
+                input.ui.inverted.grey.button(type='submit', value='Cancel')

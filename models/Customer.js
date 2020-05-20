@@ -18,6 +18,13 @@ const CustomerSchema = new Schema({
     },
     telno:{
         type:String,
+    },
+    isInTheRoom:{
+        type:Boolean,
+        default:true
+    },
+    roomNo:{
+        type:Number
     }
 
 });

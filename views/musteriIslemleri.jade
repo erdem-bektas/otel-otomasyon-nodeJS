@@ -1,20 +1,4 @@
 extends layout
-
-block append script
-
-  link(rel='stylesheet', href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
-  link(rel='stylesheet', href='/resources/demos/style.css')
-  script(src='https://code.jquery.com/jquery-1.12.4.js')
-  script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
-
-  script.
-    $( function() {
-    $( "#datepicker" ).datepicker();
-    } );
-
-    $( function() {
-    $( ".ui.normal.dropdown" ).dropdown();
-    } );
     
 
 block content 
@@ -35,34 +19,34 @@ block content
                     br
                     .ui.label.black.big Oda No
                     .ui.compact.menu
-                        select.ui.search.selection.dropdown Oda No
-                            option(valuse='') Oda No
-                            option(value='101') 101
-                            option(value='102') 102
-                            option(value='103') 103
-                            option(value='104') 104
-                            option(value='105') 105
-                            option(value='106') 106
+                        .ui.simple.dropdown.item Oda No
+                            i.dropdown.icon
+                            .menu
+                                .item 101
+                                .item 102
+                                .item 103
+                            //- each val in  rooms 
+                            //-     option #{ val.no }
                     br
                     br
                     .ui.label.black.big TC Kimlik No : 
                     .ui.input
-                        input(type='text', placeholder='39944023936', name="ucret")
+                        input(type='text', placeholder='39944023936', name="tcno")
                     br
                     br
                     .ui.label.big.black  Ad :
                     .ui.input
-                        input(type='text', placeholder='Erdem', name="ucret")
+                        input(type='text', placeholder='Erdem', name="ad")
                     br
                     br
                     .ui.label.big.black Soyad:
                     .ui.input
-                        input(type='text', placeholder='Bektaş', name="ucret")
+                        input(type='text', placeholder='Bektaş', name="soyad")
                     br 
                     br 
                     .ui.label.big.black Telefon Numarası : 
                     .ui.input
-                        input(type='text', placeholder='05544386850', name="ucret")
+                        input(type='text', placeholder='05544386850', name="telNo")
                     br 
                     br 
                     .ui.label.big.black Date
@@ -106,13 +90,25 @@ block content
                 
             .ten.wide.column.right.floated.grey 
                 .ui.container
-                    p Nostrud mollit cupidatat in eu nisi exercitation.
-                    p Nostrud mollit cupidatat in eu nisi exercitation.
-                    p Nostrud mollit cupidatat in eu nisi exercitation.
-                    p Nostrud mollit cupidatat in eu nisi exercitation.
-                    p Nostrud mollit cupidatat in eu nisi exercitation.
-                    p Nostrud mollit cupidatat in eu nisi exercitation.
-                    p Nostrud mollit cupidatat in eu nisi exercitation.
-                    p Nostrud mollit cupidatat in eu nisi exercitation.
-                    p Nostrud mollit cupidatat in eu nisi exercitation.
-                    p Nostrud mollit cupidatat in eu nisi exercitation.
+                    table.ui.inverted.table
+                        thead
+                            tr
+                                th Oda No
+                                th Name
+                                th Surname
+                                th Tel No
+                        tbody
+                         each val in  customer 
+                              tr
+                                    td #{ val.roomNo }
+                                    td #{ val.name }
+                                    td #{ val.surname }
+                                    td #{ val.telno }
+                        tfoot
+                            tr
+                                th Oda No
+                                th Name
+                                th Surname
+                                th Tel No
+
+                                            

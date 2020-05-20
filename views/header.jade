@@ -2,21 +2,26 @@ block stylesheet
   link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js")
   link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css")
 
-  
-block script
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js')
+  link(rel='stylesheet', type='text/css', href='semantic/dist/semantic.min.css')
 
 
 block header
   .ui.inverted.segment
-    .ui.inverted.secondary.pointing.menu
-      a.item(href='/')
-        | Ana Sayfa
-      a.item(href='/musteriIslemleri')
-        | Müşteri İşlemleri
-      a.item(href='/odaIslemleri')
-        | Oda İşlemleri
-      .right.menu
-        a.ui.item(href='https://github.com/actasalways/otel-otomasyon-nodeJS', target='_blank', rel='noopener noreferrer')
-          i.github.icon
+      .ui.menu.inverted.pointing
+        a.item(href='/') Ana Sayfa
+        .ui.simple.dropdown.item Müşteri Hizmetleri
+          i.dropdown.icon
+          .menu
+            a.item(href='/musteriIslemleri')  Müşteri Ekle
+            a.item(href='/odaIslemleri') Müşteri Bilgileri Güncelle
+            a.item(href='/odaIslemleri') Müşteri Bilgileri Sil
+        .ui.simple.dropdown.item Oda İşlemleri
+          i.dropdown.icon
+          .menu
+            a.item(href='/musteriIslemleri')  Oda Ekle
+            a.item(href='/odaIslemleri') Oda Bilgileri Güncelle
+            a.item(href='/odaIslemleri') Oda Sil
 
+        .right.menu
+          a.ui.item(href='https://github.com/actasalways/otel-otomasyon-nodeJS', target='_blank', rel='noopener noreferrer')
+            i.github.icon

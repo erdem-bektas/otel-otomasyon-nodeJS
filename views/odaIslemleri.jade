@@ -1,6 +1,7 @@
 extends layout
 
 block content 
+ form(method='post')                    
     .ui.inverted.segment
         .ui.container
             .ui.grid
@@ -18,14 +19,11 @@ block content
                     br
                     .ui.label.black.big Oda No
                     .ui.compact.menu
-                        select.ui.search.selection.dropdown Oda No
-                            option(valuse='') Oda No
-                            option(value='101') 101
-                            option(value='102') 102
-                            option(value='103') 103
-                            option(value='104') 104
-                            option(value='105') 105
-                            option(value='106') 106
+                        .ui.simple.dropdown.item Oda No
+                            i.dropdown.icon
+                            .menu
+                                each val in  rooms 
+                                    .item  #{ val.no }
                     br
                     br
                     .ui.label.black.big Günlük Ücret : 
@@ -39,6 +37,9 @@ block content
                 br
                 br
                 button.ui.inverted.button.green  Oda Ücretini Güncelle
+                br
+                br
+                button.ui.inverted.button.red  Odayı Sil
                 br
                 br
             .ten.wide.column.right.floated
@@ -59,8 +60,9 @@ block content
                     br
                     .ui.label.big.black  Odanın Kapasitesi:
                     .ui.input
-                        input(type='number',min="1", placeholder='200', name="yeni_odaKapasite" )
+                        input(type='number',min="1", placeholder='1', name="yeni_odaKapasite" )
                 br
                 br
-                button.ui.inverted.button.green  Yeni Oda Kaydet
-             
+                button.ui.inverted.button.green(type='submit')  Yeni Oda Kaydet
+
+

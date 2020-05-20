@@ -7,6 +7,7 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const odaIslemleriRouter = require('./routes/odaIslemleri');
 const musteriIslemleriRouter = require('./routes/musteriIslemleri');
+const deneme = require('./routes/deneme');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/odaIslemleri', odaIslemleriRouter);
 app.use('/musteriIslemleri', musteriIslemleriRouter);
+app.use('/deneme', deneme);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

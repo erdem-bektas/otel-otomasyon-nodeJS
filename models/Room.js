@@ -13,6 +13,7 @@ const RoomSchema = new Schema({
     },
     renterId:{
         type: String,
+        default:NaN
     },
     rentalDate:{
         type:Date,
