@@ -9,11 +9,15 @@ const odaIslemleriRouter = require('./routes/odaIslemleri');
 const musteriIslemleriRouter = require('./routes/musteriIslemleri');
 const deneme = require('./routes/deneme');
 
+// Müşteri İşlemleri 
+const musteriEkle = require('./routes/musteriIslemleri');
+//Oda İşlemleri
+const odaEkle = require('./routes/odaIslemleri');
+
 const app = express();
 
 // DB Connection
 const db=require('./helper/db.js')();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,9 +30,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/odaIslemleri', odaIslemleriRouter);
-app.use('/musteriIslemleri', musteriIslemleriRouter);
+app.use('/oda', odaIslemleriRouter);
+app.use('/musteri', musteriIslemleriRouter);
 app.use('/deneme', deneme);
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

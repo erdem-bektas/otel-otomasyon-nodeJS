@@ -1,0 +1,31 @@
+extends layout
+    
+
+block content 
+    .ui.inverted.segment.center.aligned
+        .ui.container
+            h1 Oda Ekle
+
+
+    .ui.inverted.segment.center.aligned
+        .ui.container
+            .ui.big.header.inverted Yeni Oda Ekleme
+            br 
+            .ui.label.black.big Oda No : 
+            .ui.input
+                input(type='number',min="100", placeholder='109', name="yeni_odaNo" )
+            br
+            .ui.big.header.red *İlk hane kat numarası, sonraki iki hane kattaki kaçıncı oda olduğunu belirtir.
+            .ui.big.header.red Örneğin 101 numaralı oda, 1. kat 1 numaralı oda demektir.
+            br
+            .ui.label.big.black  Günlük Ücret :
+            .ui.input
+                input(type='number',min="1", placeholder='200', name="yeni_odaGunlukUcret" )
+            br
+            br
+            .ui.label.big.black  Odanın Kapasitesi:
+            .ui.input
+                input(type='number',min="1", placeholder='1', name="yeni_odaKapasite" )
+        br
+        br
+        button.ui.inverted.button.green(type='submit')  Yeni Oda Kaydet

@@ -8,7 +8,7 @@ router.get('/',(req,res,next)=>{
   const promise=Room.find({ });
 
   promise.then((rooms)=>{
-  res.render("odaIslemleri", {rooms} );
+   res.render("odaIslemleri", {rooms} );
   }).catch((err)=>{
     res.json(err);
   })
@@ -67,7 +67,17 @@ router.post('/',(req,res)=>{
 
 });
 
+router.get('/ekle',(req,res)=>{
+  res.render('odaEkle');
+});
 
+router.get('/guncelle',(req,res)=>{
+  res.render('odaGuncelle');
+});
+
+router.get('/listele',(req,res)=>{
+  res.render('odaListele');
+});
 
 
 

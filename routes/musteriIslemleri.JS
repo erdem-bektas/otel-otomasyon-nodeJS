@@ -5,27 +5,14 @@ var router = express.Router();
 const Customer=require('../models/Customer');
 const Room=require('../models/Room');
 
-function gelsin  (req,res) {
-  const promise=Room.find({ });
-  promise.then((rooms)=>{
-    //return rooms[0].no;
-    return rooms
-  }).catch((err)=>{
-    res.json(err);
-  });
-}
-
-router.get('/',(req,res)=>{
-  const promise=Customer.find({ });
-  promise.then((customer)=>{
-    res.render('musteriIslemleri',{ customer });
-  }).catch((err)=>{
-    res.json(err);
-  });
-
-
-});
-
+// router.get('/',(req,res)=>{
+//   const promise=Customer.find({ });
+//   promise.then((customer)=>{
+//     res.render('musteriIslemleri',{ customer });
+//   }).catch((err)=>{
+//     res.json(err);
+//   });
+// });
 
 
 router.get('/new', function(req, res, next) {
@@ -45,15 +32,33 @@ router.get('/new', function(req, res, next) {
 });
 
 
+router.get('/ekle',(req,res)=>{
+  const promise=Room.find({ });
+  promise.then((rooms)=>{
+    res.render('musteriEkle',{rooms});
+    return rooms
+  }).catch((err)=>{
+    res.json(err);
+  });
+});
+
+router.post('/ekle',(req,res)=>{
+  const data=req.body;
+  res.json(data);
+});
+
+router.get('/guncelle',(req,res)=>{
+  res.render('musteriGuncelle')
+});
 
 
+router.get('/',(req,res)=>{
+  res.render('musteriIslemleri');
+});
 
-
-
-
-
-
-
+router.get('/listele',(req,res)=>{
+  res.render('musteriListele');
+});
 
 
 module.exports = router;

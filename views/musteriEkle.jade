@@ -1,0 +1,80 @@
+extends layout
+    
+
+block content 
+    .ui.inverted.segment.center.aligned
+        .ui.container
+            h1 Müşteri Ekle
+
+
+    .ui.inverted.segment.center.aligned
+        .ui.container
+         form(method='post')
+            br
+            .ui.label.black.big Oda No :
+            .ui.compact.menu
+                .ui.simple.dropdown.item Oda No
+                    i.dropdown.icon
+                    .menu
+                        each val in  rooms 
+                            .item #{ val.no }
+            br
+            br
+            .ui.label.black.big TC Kimlik No : 
+            .ui.input
+                input(type='text', placeholder='39944023936', name="tcno")
+            br
+            br
+            .ui.label.big.black  Ad :
+            .ui.input
+                input(type='text', placeholder='Erdem', name="ad")
+            br
+            br
+            .ui.label.big.black Soyad:
+            .ui.input
+                input(type='text', placeholder='Bektaş', name="soyad")
+            br 
+            br 
+            .ui.label.big.black Telefon Numarası : 
+            .ui.input
+                input(type='text', placeholder='05544386850', name="telNo")
+            br 
+            br 
+            .ui.label.big.black Kayıt Tarihi :
+            .ui.input
+                i.calendar.icon.inverted
+                input(type='text', placeholder='Gün/Ay/Yıl', name="girisTarihi")
+            .ui.big.header.red Kayıt Tarihi (Gün/Ay/Yıl) şeklinde olmalıdır.
+            .ui.label.big.black Çıkış Tarihi :
+            .ui.input
+                i.calendar.icon.inverted
+                input(type='text', placeholder='Gün/Ay/Yıl', name="cikisTarihi")
+            .ui.big.header.red Çıkış Tarihi (Gün/Ay/Yıl) şeklinde olmalıdır.
+            br 
+            .ui.label.big.black Ücret :
+            .ui.input
+                input(type='text', placeholder='Ücret', name="ucret")
+            br
+            br
+            .ui.label.big.black Ücret Alındı Mı
+            .ui.label.big
+                .ui.fitted.checkbox
+                    input(type='checkbox', checked='false', name="odemeAlindiMi", value=false)
+                    label 
+            br
+            br
+            .ui.label.big
+                .grouped.fields
+                    label Ödeme Alındı mı ?
+                    .field
+                        .ui.radio.checkbox
+                            input(type='radio', name='frequency')
+                            label Alındı
+                    .field
+                        .ui.radio.checkbox
+                            input(type='radio', name='frequency', checked='checked')
+                            label Alınmadı
+            br
+            br
+            button.ui.inverted.button.green(type='submit')  Yeni Kayıt Al
+            button.ui.inverted.button.grey Müşteri Listesine Dön

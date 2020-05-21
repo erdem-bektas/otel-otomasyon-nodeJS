@@ -1,0 +1,38 @@
+extends layout
+    
+block content 
+    .ui.inverted.segment
+        .ui.container
+            .ui.grid
+                .five.wide.column
+                    h2 Oda Bilgileri Güncelle/Sil
+                .eleven.wide.column.right.floated 
+                    .ui.fluid.action.inverted.transparent.input.big  
+                        input(type='text', placeholder=' Silinecek Odanın Numarasını giriniz...')
+                        button.ui.inverted.button.red  Sil
+
+    .ui.inverted.segment.center.aligned
+        .ui.container 
+            br
+            .ui.label.black.big Oda No
+            .ui.compact.menu
+                .ui.simple.dropdown.item Oda No
+                    i.dropdown.icon
+                    .menu
+                        //- each val in  rooms 
+                        //-     .item  #{ val.no }
+                        .item 101
+            br
+            br
+            .ui.label.black.big Günlük Ücret : 
+            .ui.input
+                input(type='number',min="1", placeholder='200', name="guncelle_ucret" )
+            br
+            br
+            .ui.label.big.black  Odanın Kapasitesi:
+            .ui.input
+                input(type='number',min="1", placeholder='1', name="guncelle_odaKapasite" )
+            br
+            br
+            button.ui.inverted.button.green  Oda Ücretini Güncelle
+            br
