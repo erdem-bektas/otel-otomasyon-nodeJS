@@ -17,14 +17,11 @@ block content
             br
             .ui.label.black.big Oda No :
             .ui.compact.menu
-                .ui.simple.dropdown.item Oda No 
-                    i.dropdown.icon
-                    .menu
-                        .item 101
-                        .item 102
-                        .item 103
-                    //- each val in  rooms 
-                    //-     option #{ val.no }
+                select.ui.dropdown.simple Oda No 
+                    i.dropdown.icon 
+                        if(rooms)
+                            each val in  rooms 
+                                option #{ val.no }
             br
             br
             .ui.label.black.big TC Kimlik No : 

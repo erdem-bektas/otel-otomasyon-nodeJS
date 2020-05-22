@@ -15,8 +15,9 @@ block content
             .ui.compact.menu
                 select.ui.dropdown.simple Oda No 
                     i.dropdown.icon 
-                        each val in  rooms 
-                            option #{ val.no }
+                        if(rooms)
+                            each val in  rooms 
+                                option #{ val.no }
             br
             br
             .ui.label.black.big TC Kimlik No : 

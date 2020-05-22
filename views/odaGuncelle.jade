@@ -14,14 +14,13 @@ block content
     .ui.inverted.segment.center.aligned
         .ui.container 
             br
-            .ui.label.black.big Oda No
+            .ui.label.black.big Oda No :
             .ui.compact.menu
-                .ui.simple.dropdown.item Oda No
-                    i.dropdown.icon
-                    .menu
-                        //- each val in  rooms 
-                        //-     .item  #{ val.no }
-                        .item 101
+                select.ui.dropdown.simple Oda No 
+                    i.dropdown.icon 
+                        if(rooms)
+                            each val in  rooms 
+                                option(value = val.no ) #{ val.no }
             br
             br
             .ui.label.black.big Günlük Ücret : 

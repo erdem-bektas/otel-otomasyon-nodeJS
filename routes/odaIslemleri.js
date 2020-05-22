@@ -70,10 +70,16 @@ router.get('/ekle',(req,res)=>{
   res.render('odaEkle');
 });
 
-router.get('/guncelle',(req,res)=>{
-  res.render('odaGuncelle');
-});
 
+router.get('/guncelle',(req,res)=>{
+  const promise=Room.find({ });
+  promise.then((rooms)=>{
+    res.render('odaGuncelle',{rooms});
+    return rooms
+  }).catch((err)=>{
+    res.json(err);
+  });
+});
 
 
 

@@ -41,7 +41,13 @@ router.post('/ekle',(req,res)=>{
 });
 
 router.get('/guncelle',(req,res)=>{
-  res.render('musteriGuncelle')
+  const promise=Room.find({ });
+  promise.then((rooms)=>{
+    res.render('musteriGuncelle',{rooms});
+    return rooms
+  }).catch((err)=>{
+    res.json(err);
+  });
 });
 
 
