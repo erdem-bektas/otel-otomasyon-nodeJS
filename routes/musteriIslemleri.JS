@@ -1,18 +1,11 @@
+'use strict'
+
 var express = require('express');
 var router = express.Router();
 
 //models
 const Customer=require('../models/Customer');
 const Room=require('../models/Room');
-
-// router.get('/',(req,res)=>{
-//   const promise=Customer.find({ });
-//   promise.then((customer)=>{
-//     res.render('musteriIslemleri',{ customer });
-//   }).catch((err)=>{
-//     res.json(err);
-//   });
-// });
 
 
 router.get('/new', function(req, res, next) {
@@ -56,9 +49,17 @@ router.get('/',(req,res)=>{
   res.render('musteriIslemleri');
 });
 
+
 router.get('/listele',(req,res)=>{
-  res.render('musteriListele');
+  const promise=Customer.find({  }).sort({'roomNo' : 1 });
+  //oda numarasına göre sıralar
+  promise.then((customer)=>{
+    res.render('musteriListele',{ customer });
+  }).catch((err)=>{
+    res.json(err);
+  });
 });
+
 
 
 module.exports = router;

@@ -4,17 +4,15 @@ const router = express.Router();
 //models
 const Room=require('../models/Room');
 
-router.get('/',(req,res,next)=>{
-  const promise=Room.find({ });
+router.get('/listele',(req,res,next)=>{
+  const promise=Room.find({ }).sort({'no' : 1 });
 
-  promise.then((rooms)=>{
-   res.render("odaIslemleri", {rooms} );
+  promise.then((room)=>{
+   res.render("odaListele", {room} );
   }).catch((err)=>{
     res.json(err);
   })
-
 });
-
 
 
 router.get('/new', function(req, res, next) {
@@ -31,6 +29,7 @@ router.get('/new', function(req, res, next) {
     });
 
 });
+
 
 router.post('/',(req,res)=>{
   const data=req.body;
@@ -74,11 +73,6 @@ router.get('/ekle',(req,res)=>{
 router.get('/guncelle',(req,res)=>{
   res.render('odaGuncelle');
 });
-
-router.get('/listele',(req,res)=>{
-  res.render('odaListele');
-});
-
 
 
 

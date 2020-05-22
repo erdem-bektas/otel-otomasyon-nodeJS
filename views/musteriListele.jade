@@ -1,1 +1,43 @@
-| müşteri listele
+extends layout
+    
+
+block content 
+    .ui.inverted.segment.center.aligned
+        .ui.container
+            .ui.grid
+                .fourteen.wide.column
+                    h1 Müşteri Listesi
+                .two.wide.column.right.floated 
+                    .ui.fluid.action.inverted.transparent.input
+                        button.ui.inverted.button.green  Export
+
+
+
+    .ui.inverted.segment
+        .ui.grid
+
+            .wide.column.floated.grey 
+                .ui.container
+                    table.ui.inverted.table
+                        thead
+                            tr
+                                th Oda No
+                                th Name
+                                th Surname
+                                th Tel No
+                        tbody
+                        if(customer)
+                         each val in  customer 
+                              tr
+                                td #{ val.roomNo }
+                                td #{ val.name }
+                                td #{ val.surname }
+                                td #{ val.telno }
+                        tfoot
+                            tr
+                                th Oda No
+                                th Name
+                                th Surname
+                                th Tel No
+
+                                            

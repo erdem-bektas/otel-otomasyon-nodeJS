@@ -1,1 +1,41 @@
-| odaları listele
+extends layout
+    
+
+block content 
+    .ui.inverted.segment.center.aligned
+        .ui.container
+            h1 Oda Listele
+
+
+
+    .ui.inverted.segment
+        .ui.grid
+
+            .wide.column.floated.grey 
+                .ui.container
+                    table.ui.inverted.table
+                        thead
+                            tr
+                                th Oda No
+                                th Oda Günlük Ücret
+                                th Kullanılabilirlik
+                                th Oda Kapasite
+                        tbody
+                        if(room)
+                         each val in  room 
+                              tr
+                                td #{ val.no }
+                                td #{ val.dailyPrice }
+                                if(val.isUsable)
+                                    td Kullanılabilir
+                                else 
+                                    td Bakımda
+                                td #{ val.capacityOfTheRoom }
+                        tfoot
+                            tr
+                                th Oda No
+                                th Oda Günlük Ücret
+                                th Kullanılabilirlik
+                                th Oda Kapasite
+
+                                            

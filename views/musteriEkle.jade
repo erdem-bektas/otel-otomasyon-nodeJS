@@ -13,11 +13,10 @@ block content
             br
             .ui.label.black.big Oda No :
             .ui.compact.menu
-                .ui.simple.dropdown.item Oda No
-                    i.dropdown.icon
-                    .menu
+                select.ui.dropdown.simple Oda No 
+                    i.dropdown.icon 
                         each val in  rooms 
-                            .item #{ val.no }
+                            option #{ val.no }
             br
             br
             .ui.label.black.big TC Kimlik No : 

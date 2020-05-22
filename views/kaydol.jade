@@ -1,0 +1,28 @@
+extends layout
+    
+
+block content 
+    .ui.inverted.segment
+        .ui.container
+            .ui.middle.aligned.center.aligned.grid.medium
+                .column
+                 form(method='post')
+                    form.ui.medium.form
+                        .ui.stacked.segment.inverted
+                            .field
+                            .ui.left.icon.input
+                                i.user.icon
+                                input(type='text', name='username', placeholder='Username')
+                            .field
+                            .ui.left.icon.input
+                                i.lock.icon
+                                input(type='password', name='pass', placeholder='Password')
+                            br
+                            br
+                            button.ui.inverted.button.green.big(type='submit') Kaydol
+                        .ui.error.message
+
+
+
+
+

@@ -1,34 +1,33 @@
 extends layout
 
-block append script
-
-    script(type='text/javascript', src='/bower_components/semantic-ui-calendar/dist/calendar.min.js')
-    link(rel='stylesheet', href='/bower_components/semantic-ui-calendar/dist/calendar.min.css')
-
+block script
     script.
-        $( function() {
-        $( "#example1" ).calendar();
-        } );
-
-        $( function() {
-        $( "#datepicker" ).datepicker();
-        } );
-
+        $('.ui.dropdown').dropdown();
 
 
 block content 
     .ui.inverted.segment
-        .ui.container
-            form(method="post")
+        .ui.container.center.aligned
+            h1 Yeni misin
+            h2 Haydi Kaydol
+            br
+            button.ui.inverted.button.green.huge
+                a(href='/oturum') 
+                    i.user.plus.icon 
+            br
+            br
+            br
 
 
-                #calendar.ui.calendar
-                    .ui.input.left.icon
-                        i.calendar.icon
-                        input(type='text', placeholder='Date/Time')
 
-                    br
-                    br
-                    br
-                    button.ui.inverted.button.green(type='submit')  Yeni Oda Kaydet
-                    br
+            br
+            br
+            br
+            br
+            .ui.compact.menu
+                select.ui.dropdown.simple Oda No 
+                    i.dropdown.icon 
+                        option(value='') Gender
+                        option(value='1') Male
+                        option(value='0') Female
+

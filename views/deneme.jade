@@ -1,34 +1,10 @@
 extends layout
 
-block header 
 
 
 block content 
-
-    br
-    br
-    br
     .ui.inverted.segment
-        .ui.compact.menu
-            select.ui.search.selection.dropdown Oda No
-                option Oda No
-                option 101
-                option 102
-
-    br
-    br
-    br
-
-    .ui.inverted.segment
-        .ui.compact.menu
-            .ui.simple.dropdown.item Dropdown
-                i.dropdown.icon
-                .menu
-                    .item Choice 1
-                    .item Choice 2
-                    .item Choice 3
-
-
-
-block footer
-
+        .ui.container
+            if(a)
+                p= a
+                br
