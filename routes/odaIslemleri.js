@@ -14,7 +14,6 @@ router.get('/listele',(req,res,next)=>{
   })
 });
 
-
 router.get('/new', function(req, res, next) {
     const room = new Room({
       no:101,
@@ -29,7 +28,6 @@ router.get('/new', function(req, res, next) {
     });
 
 });
-
 
 router.post('/',(req,res)=>{
   const data=req.body;
@@ -63,12 +61,25 @@ router.post('/',(req,res)=>{
     });
   }
 
-
 });
 
 router.get('/ekle',(req,res)=>{
   res.render('odaEkle');
 });
+
+router.post('/ekle',(req,res)=>{
+  const promise=Room.insertMany({
+    no:200
+   });
+
+  promise.then((room)=>{
+    res.json(room)
+  }).catch((err)=>{
+    res.json(err);
+  });
+});
+
+
 
 
 router.get('/guncelle',(req,res)=>{
@@ -76,6 +87,38 @@ router.get('/guncelle',(req,res)=>{
   promise.then((rooms)=>{
     res.render('odaGuncelle',{rooms});
     return rooms
+  }).catch((err)=>{
+    res.json(err);
+  });
+});
+
+router.post('/guncelle',(req,res)=>{
+  const data=req.body;
+
+  const promise=Room.updateOne({ 
+    no: 104 
+  },
+  {
+    no:111,
+    dailyPrice:111,
+    capacityOfTheRoom: 11
+  });
+
+  promise.then((room)=>{
+    res.json(room)
+
+  }).catch((err)=>{
+    res.json(err);
+  })
+});
+
+router.post('/sil',(req,res)=>{
+  const promise = Room.findOneAndDelete({
+    no: 200
+  });
+
+  promise.then((room)=>{
+    res.json(room);
   }).catch((err)=>{
     res.json(err);
   });

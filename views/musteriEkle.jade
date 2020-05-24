@@ -17,7 +17,7 @@ block content
                     i.dropdown.icon 
                         if(rooms)
                             each val in  rooms 
-                                option #{ val.no }
+                                option(val=val.no) #{ val.no }
             br
             br
             .ui.label.black.big TC Kimlik No : 
@@ -61,19 +61,6 @@ block content
                 .ui.fitted.checkbox
                     input(type='checkbox', checked='false', name="odemeAlindiMi", value=false)
                     label 
-            br
-            br
-            .ui.label.big
-                .grouped.fields
-                    label Ödeme Alındı mı ?
-                    .field
-                        .ui.radio.checkbox
-                            input(type='radio', name='frequency')
-                            label Alındı
-                    .field
-                        .ui.radio.checkbox
-                            input(type='radio', name='frequency', checked='checked')
-                            label Alınmadı
             br
             br
             button.ui.inverted.button.green(type='submit')  Yeni Kayıt Al

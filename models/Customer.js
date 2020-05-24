@@ -14,7 +14,8 @@ const CustomerSchema = new Schema({
     },
     tcno:{
         type:String,
-        unique:true
+        unique:true,
+        maxlength:11
     },
     telno:{
         type:String,

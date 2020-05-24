@@ -1,12 +1,13 @@
 extends layout
     
 
+
 block content 
     .ui.inverted.segment
         .ui.container
             .ui.middle.aligned.center.aligned.grid.medium
                 .column
-                    form.ui.medium.form
+                    form.ui.medium.form(method='post')
                         .ui.stacked.segment.inverted
                             .field
                             .ui.left.icon.input
@@ -19,7 +20,12 @@ block content
                             br
                             br
                             button.ui.inverted.button.green.big(type='submit') Login
-                        .ui.error.message
+                            br
+
+                    if(oturumHatasi)
+                        .ui.message.inverted.red
+                            p= oturumHatasi
+                        
                     .ui.message.inverted
                         | Yeni misin ?  
                         a(href='/kaydol') Kaydol

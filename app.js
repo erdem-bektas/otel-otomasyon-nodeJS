@@ -26,26 +26,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret: 'secret key ',
-  resave:false,
-  saveUninitialized:false,
-  cookie:{
-
-  }
-}
-
-));
-
-
+  secret : 'secret key',
+  resave : false,
+  saveUninitialized : false,
+  cookie : { }
+}));
 
 app.use('/', indexRouter);
 app.use('/oda', odaIslemleriRouter);
 app.use('/musteri', musteriIslemleriRouter);
 app.use('/deneme', deneme);
-
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

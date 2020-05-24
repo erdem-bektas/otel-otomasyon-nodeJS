@@ -8,42 +8,81 @@ const Customer=require('../models/Customer');
 const Room=require('../models/Room');
 
 
-router.get('/new', function(req, res, next) {
-  const customer = new Customer({
-    name:"Engin",
-    surname:"Bektaş",
-    tcno:"39944023932",
-    telno:"",
-    roomNo: 5
-  });
-
-  customer.save((err,data)=>{
-      if(err)
-      console.log(err);
-      res.json(data);
-  });
+router.get('/ekle',(req,res)=>{
+  if(req.session.isAdmin || req.session.isUser){
+    const promise=Room.find({ });
+    promise.then((rooms)=>{
+      res.render('musteriEkle',{rooms});
+      return rooms
+    }).catch((err)=>{
+      res.json(err);
+    });
+  }
+  else{
+    res.render('index');
+  }
 });
 
+router.post('/ekle',(req,res)=>{
+  const promise=Customer.insertMany({
+    name: "customer1",
+    surname:"surname1",
+    tcno:"12345678900"
+   });
 
-router.get('/ekle',(req,res)=>{
-  const promise=Room.find({ });
-  promise.then((rooms)=>{
-    res.render('musteriEkle',{rooms});
-    return rooms
+  promise.then((customer)=>{
+    res.json(customer)
   }).catch((err)=>{
     res.json(err);
   });
 });
 
-router.post('/ekle',(req,res)=>{
-  const data=req.body;
-  res.json(data);
-});
 
 router.get('/guncelle',(req,res)=>{
+  if(req.session.isAdmin || req.session.isUser){
   const promise=Room.find({ });
+
   promise.then((rooms)=>{
     res.render('musteriGuncelle',{rooms});
+    return rooms
+  }).catch((err)=>{
+    res.json(err);
+  });
+  }else{
+    res.render('index');
+  }
+});
+
+// silme
+// router.post('/guncelle',(req,res)=>{
+//   const promise = Customer.findOneAndDelete({
+//     tcno: "12345678912"
+//   });
+
+//   promise.then((customer)=>{
+//     //res.render('',{customer});
+//     res.json(customer);
+//   }).catch((err)=>{
+//     res.json(err);
+//   });
+// });
+
+
+router.post('/guncelle',(req,res)=>{
+  const data=req.body;
+  //res.json(data);
+  const promise=Customer.findOne({ 
+    tcno: "39944023933"
+   }).findOneAndUpdate({
+    name:"değişen ad",
+    surname:"değişen soyad",
+    tcno:"12345678912",
+    roomNo:103
+  });
+
+  promise.then((customer)=>{
+    //res.render('',{customer});
+    res.json(customer);
     return rooms
   }).catch((err)=>{
     res.json(err);
@@ -52,11 +91,16 @@ router.get('/guncelle',(req,res)=>{
 
 
 router.get('/',(req,res)=>{
-  res.render('musteriIslemleri');
+  if(req.session.isAdmin){
+    res.render('musteriIslemleri');
+  }
+  else{
+    res.render('index');
+  }
 });
 
-
 router.get('/listele',(req,res)=>{
+
   const promise=Customer.find({  }).sort({'roomNo' : 1 });
   //oda numarasına göre sıralar
   promise.then((customer)=>{
@@ -64,8 +108,21 @@ router.get('/listele',(req,res)=>{
   }).catch((err)=>{
     res.json(err);
   });
+  
 });
 
+
+router.post('/ara',(req,res)=>{
+  const promise=Customer.find({
+    tcno: 39944023932
+   });
+
+  promise.then((customer)=>{
+    res.json(customer);
+  }).catch((err)=>{
+    res.json(err);
+  });
+});
 
 
 module.exports = router;

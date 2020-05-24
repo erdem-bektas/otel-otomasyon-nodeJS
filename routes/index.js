@@ -6,23 +6,70 @@ const Customer = require('../models/Customer');
 const Room = require('../models/Room');
 const User = require('../models/Users');
 
-router.get('/', (req, res, next) => {
-  res.render('index');
+router.get('/', (req, res) => {
+  const isUser=req.session.isUser;
+  const isAdmin=req.session.isAdmin;
+  res.render('index',{ isUser, isAdmin});
+
 });
+
+router.get('/destroy', (req, res) => {
+  req.session.destroy((err)=>{
+    res.render('index')
+    if(err){
+      res.json(err)
+    }
+  });
+});
+
 router.get('/iletisim', (req, res, next) => {
-  res.render('iletisim');
+    res.render('iletisim',{isAdmin: req.session.isAdmin, isUser: req.session.isUser });
 });
-router.get('/oturum', (req, res, next) => {
-  res.render('oturum');
-});
+
 router.get('/kaydol', (req, res, next) => {
-  res.render('kaydol');
+  if(isUser || isAdmin){
+    res.render('index')
+  }
+  else{
+    res.render('kaydol');
+  }
 });
 
 router.post('/',(req,res)=>{
   res.json({status:1});
 });
+router.get('/oturum', (req, res, next) => {
+  res.render('oturum');
+});
 
+
+router.post('/oturum', (req, res, next) => {
+  const data = req.body;
+  const promise=User.findOne({ username:data.username , pass:data.pass });
+  //oda numarasına göre sıralar
+  promise.then((user)=>{
+    if(user){
+      req.session.isUser=true; 
+      req.session.isAdmin=false;
+      if(user.isAdmin===true){
+        req.session.isAdmin=true; //admindir
+        //res.send(req.session.isAdmin)
+        res.render('index', { isAdmin: req.session.isAdmin, isUser : req.session.isUser } )
+      }
+      else{
+        res.render('index', { isUser : req.session.isUser, isAdmin: req.session.isAdmin  } )
+      }
+    }
+    else{
+      req.session.isUser=false;
+      res.render('oturum', { oturumHatasi :"Bilgiler yanlış veya Yok", isUser : req.session.isUser, isAdmin: req.session.isAdmin });
+    }
+  }).catch((err)=>{
+    res.json(err);
+  });
+
+
+});
 
 
 

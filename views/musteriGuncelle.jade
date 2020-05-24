@@ -4,16 +4,19 @@ extends layout
 block content 
     .ui.inverted.segment
         .ui.container
+          form(method='post')
             .ui.grid
                 .five.wide.column
                     h2 Müşteri Güncelleme
                 .eleven.wide.column.right.floated 
-                    .ui.fluid.action.inverted.transparent.input.big TC : 
-                        input(type='text', placeholder=' Güncellenecek kişinin TC Kimlik Numarasını Giriniz...')
-                        button.ui.inverted.button.red  Sil
+                    .ui.fluid.action.inverted.transparent.input.big(type='text', placeholder='39944023936') TC :
+                        input(type='text', name="silinecekTc", placeholder=' Güncellenecek kişinin TC Kimlik Numarasını Giriniz...')
+                        button.ui.inverted.button.red(type='submit')  Sil
 
     .ui.inverted.segment.center.aligned
         .ui.container
+         form(method='post')
+
             br
             .ui.label.black.big Oda No :
             .ui.compact.menu

@@ -1,33 +1,24 @@
 extends layout
-
-block script
-    script.
-        $('.ui.dropdown').dropdown();
-
+              
 
 block content 
     .ui.inverted.segment
         .ui.container.center.aligned
-            h1 Yeni misin
-            h2 Haydi Kaydol
-            br
-            button.ui.inverted.button.green.huge
-                a(href='/oturum') 
-                    i.user.plus.icon 
-            br
-            br
-            br
+            if(!isUser)
+                h1 Yeni misin
+                h2 Haydi Kaydol
+                br
+                button.ui.inverted.button.green.huge
+                    a(href='/kaydol') 
+                        i.user.plus.icon 
+                br
+                br
 
+            if(isUser)
+                h1 Kullanıcı
+            if(isAdmin)
+                h1 Admin 
 
-
-            br
-            br
-            br
-            br
-            .ui.compact.menu
-                select.ui.dropdown.simple Oda No 
-                    i.dropdown.icon 
-                        option(value='') Gender
-                        option(value='1') Male
-                        option(value='0') Female
-
+            
+                 
+            
