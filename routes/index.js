@@ -7,15 +7,13 @@ const Room = require('../models/Room');
 const User = require('../models/Users');
 
 router.get('/', (req, res) => {
-  const isUser=req.session.isUser;
-  const isAdmin=req.session.isAdmin;
-  res.render('index',{ isUser, isAdmin});
+  res.render('index',{ isAdmin:req.session.isAdmin, isUser: req.session.isUser });
 
 });
 
 router.get('/destroy', (req, res) => {
   req.session.destroy((err)=>{
-    res.render('index')
+    res.render('index', { isAdmin:req.session.isAdmin, isUser: req.session.isUser })
     if(err){
       res.json(err)
     }
@@ -28,10 +26,10 @@ router.get('/iletisim', (req, res, next) => {
 
 router.get('/kaydol', (req, res, next) => {
   if(isUser || isAdmin){
-    res.render('index')
+    res.render('index', {isAdmin:req.session.isAdmin, isUser: req.session.isUser})
   }
   else{
-    res.render('kaydol');
+    res.render('kaydol',{ isAdmin:req.session.isAdmin, isUser: req.session.isUser});
   }
 });
 
@@ -39,7 +37,7 @@ router.post('/',(req,res)=>{
   res.json({status:1});
 });
 router.get('/oturum', (req, res, next) => {
-  res.render('oturum');
+  res.render('oturum',{ isAdmin:req.session.isAdmin, isUser: req.session.isUser});
 });
 
 

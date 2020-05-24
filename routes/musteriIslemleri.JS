@@ -12,14 +12,14 @@ router.get('/ekle',(req,res)=>{
   if(req.session.isAdmin || req.session.isUser){
     const promise=Room.find({ });
     promise.then((rooms)=>{
-      res.render('musteriEkle',{rooms});
+      res.render('musteriEkle',{rooms, isAdmin:req.session.isAdmin });
       return rooms
     }).catch((err)=>{
       res.json(err);
     });
   }
   else{
-    res.render('index');
+    res.render('index', { isAdmin:req.session.isAdmin });
   }
 });
 
@@ -43,13 +43,13 @@ router.get('/guncelle',(req,res)=>{
   const promise=Room.find({ });
 
   promise.then((rooms)=>{
-    res.render('musteriGuncelle',{rooms});
+    res.render('musteriGuncelle',{rooms, isAdmin:req.session.isAdmin });
     return rooms
   }).catch((err)=>{
     res.json(err);
   });
   }else{
-    res.render('index');
+    res.render('index',{ isAdmin:req.session.isAdmin});
   }
 });
 
@@ -60,7 +60,7 @@ router.get('/guncelle',(req,res)=>{
 //   });
 
 //   promise.then((customer)=>{
-//     //res.render('',{customer});
+//     //res.render('',{customer, isAdmin:req.session.isAdmin });
 //     res.json(customer);
 //   }).catch((err)=>{
 //     res.json(err);
@@ -81,7 +81,7 @@ router.post('/guncelle',(req,res)=>{
   });
 
   promise.then((customer)=>{
-    //res.render('',{customer});
+    //res.render('',{customer,isAdmin:req.session.isAdmin});
     res.json(customer);
     return rooms
   }).catch((err)=>{
@@ -92,23 +92,22 @@ router.post('/guncelle',(req,res)=>{
 
 router.get('/',(req,res)=>{
   if(req.session.isAdmin){
-    res.render('musteriIslemleri');
+    res.render('musteriIslemleri',{ isAdmin:req.session.isAdmin });
   }
   else{
-    res.render('index');
+    res.render('index',{ isAdmin:req.session.isAdmin });
   }
 });
 
 router.get('/listele',(req,res)=>{
-
   const promise=Customer.find({  }).sort({'roomNo' : 1 });
   //oda numarasına göre sıralar
   promise.then((customer)=>{
-    res.render('musteriListele',{ customer });
+    res.render('musteriListele',{ customer, isAdmin:req.session.isAdmin});
   }).catch((err)=>{
     res.json(err);
   });
-  
+
 });
 
 

@@ -8,7 +8,7 @@ router.get('/listele',(req,res,next)=>{
   const promise=Room.find({ }).sort({'no' : 1 });
 
   promise.then((room)=>{
-   res.render("odaListele", {room} );
+   res.render("odaListele", {room, isAdmin:req.session.isAdmin } );
   }).catch((err)=>{
     res.json(err);
   })
@@ -64,7 +64,7 @@ router.post('/',(req,res)=>{
 });
 
 router.get('/ekle',(req,res)=>{
-  res.render('odaEkle');
+  res.render('odaEkle',{ isAdmin:req.session.isAdmin});
 });
 
 router.post('/ekle',(req,res)=>{
@@ -85,7 +85,7 @@ router.post('/ekle',(req,res)=>{
 router.get('/guncelle',(req,res)=>{
   const promise=Room.find({ });
   promise.then((rooms)=>{
-    res.render('odaGuncelle',{rooms});
+    res.render('odaGuncelle',{rooms, isAdmin:req.session.isAdmin});
     return rooms
   }).catch((err)=>{
     res.json(err);
