@@ -9,42 +9,64 @@ const Room=require('../models/Room');
 
 
 router.get('/ekle',(req,res)=>{
-  if(req.session.isAdmin || req.session.isUser){
-    const promise=Room.find({ });
+  //if(req.session.isAdmin || req.session.isUser){
+    const promise=Room.find({ isUsable:true });
     promise.then((rooms)=>{
-      res.render('musteriEkle',{rooms, isAdmin:req.session.isAdmin });
-      return rooms
+      res.render('musteriEkle',{rooms});
+      //res.json(room)
     }).catch((err)=>{
       res.json(err);
     });
-  }
-  else{
-    res.render('index', { isAdmin:req.session.isAdmin });
-  }
+ // }
+ // else{
+ //   res.render('index', { isAdmin:req.session.isAdmin });
+ // }
 });
 
+
 router.post('/ekle',(req,res)=>{
-  const promise=Customer.insertMany({
-    name: "customer1",
-    surname:"surname1",
-    tcno:"12345678900"
+  const data =req.body;
+  if(data.isPaymentReceived=="on"){
+    data.isPaymentReceived=true;
+   }
+   
+   const customer=new Customer({
+    name: data.name,
+    surname:data.surname,
+    tcno:data.tcno,
+    telno:data.telno,
+    roomNo:data.roomNo,
+    payment:data.payment,
+    isPaymentReceived:data.isPaymentReceived,
+    entryTime:data.entryTime,
+    outTime:data.outTime,
    });
 
-  promise.then((customer)=>{
-    res.json(customer)
-  }).catch((err)=>{
+    const promise = Room.findOneAndUpdate({ no: customer.roomNo },{
+      isUsable:false,
+      renterTc:data.tcno
+    });
+
+   promise.then((customer)=>{
+    customer.save((err)=>{
+          if(err)
+            res.json(err)
+          res.json(data)
+        });
+     }).catch((err)=>{
     res.json(err);
   });
 });
+
 
 
 router.get('/guncelle',(req,res)=>{
   if(req.session.isAdmin || req.session.isUser){
   const promise=Room.find({ });
 
-  promise.then((rooms)=>{
-    res.render('musteriGuncelle',{rooms, isAdmin:req.session.isAdmin });
-    return rooms
+  promise.then((room)=>{
+    res.render('musteriGuncelle',{room, isAdmin:req.session.isAdmin });
+    //return room
   }).catch((err)=>{
     res.json(err);
   });
@@ -83,7 +105,7 @@ router.post('/guncelle',(req,res)=>{
   promise.then((customer)=>{
     //res.render('',{customer,isAdmin:req.session.isAdmin});
     res.json(customer);
-    return rooms
+    return room
   }).catch((err)=>{
     res.json(err);
   });

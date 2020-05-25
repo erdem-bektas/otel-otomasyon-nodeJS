@@ -6,11 +6,9 @@ const Schema = mongoose.Schema;
 const CustomerSchema = new Schema({
     name:{
         type:String,
-        required:true
     },
     surname:{
         type:String,
-        required:true
     },
     tcno:{
         type:String,
@@ -26,6 +24,19 @@ const CustomerSchema = new Schema({
     },
     roomNo:{
         type:Number
+    },
+    entryTime:{
+
+    },
+    outTime:{
+
+    },
+    payment:{
+
+    },
+    isPaymentReceived:{
+        type:Boolean,
+        default:false
     }
 
 });

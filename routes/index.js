@@ -25,7 +25,7 @@ router.get('/iletisim', (req, res, next) => {
 });
 
 router.get('/kaydol', (req, res, next) => {
-  if(isUser || isAdmin){
+  if(req.session.isAdmin || req.session.isUser){
     res.render('index', {isAdmin:req.session.isAdmin, isUser: req.session.isUser})
   }
   else{
@@ -33,13 +33,23 @@ router.get('/kaydol', (req, res, next) => {
   }
 });
 
-router.post('/',(req,res)=>{
-  res.json({status:1});
+router.post('/kaydol',(req,res)=>{
+  const promise=User.insertMany({
+    username: "customer1",
+    pass:"surname1"
+   });
+
+  promise.then((user)=>{
+    res.json(user)
+  }).catch((err)=>{
+    res.json(err);
+  });
 });
+
+
 router.get('/oturum', (req, res, next) => {
   res.render('oturum',{ isAdmin:req.session.isAdmin, isUser: req.session.isUser});
 });
-
 
 router.post('/oturum', (req, res, next) => {
   const data = req.body;

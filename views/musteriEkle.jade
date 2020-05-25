@@ -13,11 +13,11 @@ block content
             br
             .ui.label.black.big Oda No :
             .ui.compact.menu
-                select.ui.dropdown.simple Oda No 
+                select.ui.dropdown.simple(name='roomNo') Oda No 
                     i.dropdown.icon 
                         if(rooms)
-                            each val in  rooms 
-                                option(val=val.no) #{ val.no }
+                            each val in rooms
+                                option #{ val.no }
             br
             br
             .ui.label.black.big TC Kimlik No : 
@@ -27,12 +27,12 @@ block content
             br
             .ui.label.big.black  Ad :
             .ui.input
-                input(type='text', placeholder='Erdem', name="ad")
+                input(type='text', placeholder='Erdem', name="name")
             br
             br
             .ui.label.big.black Soyad:
             .ui.input
-                input(type='text', placeholder='Bektaş', name="soyad")
+                input(type='text', placeholder='Bektaş', name="surname")
             br 
             br 
             .ui.label.big.black Telefon Numarası : 
@@ -43,25 +43,31 @@ block content
             .ui.label.big.black Kayıt Tarihi :
             .ui.input
                 i.calendar.icon.inverted
-                input(type='text', placeholder='Gün/Ay/Yıl', name="girisTarihi")
+                input(type='text', placeholder='Gün/Ay/Yıl', name="entryTime")
             .ui.big.header.red Kayıt Tarihi (Gün/Ay/Yıl) şeklinde olmalıdır.
             .ui.label.big.black Çıkış Tarihi :
             .ui.input
                 i.calendar.icon.inverted
-                input(type='text', placeholder='Gün/Ay/Yıl', name="cikisTarihi")
+                input(type='text', placeholder='Gün/Ay/Yıl', name="outTime")
             .ui.big.header.red Çıkış Tarihi (Gün/Ay/Yıl) şeklinde olmalıdır.
             br 
             .ui.label.big.black Ücret :
             .ui.input
-                input(type='text', placeholder='Ücret', name="ucret")
+                input(type='text', placeholder='Ücret', name="payment")
             br
             br
             .ui.label.big.black Ücret Alındı Mı
             .ui.label.big
                 .ui.fitted.checkbox
-                    input(type='checkbox', checked='false', name="odemeAlindiMi", value=false)
+                    input(type='checkbox', checked='false', name="isPaymentReceived", value=false)
                     label 
             br
             br
+            if(hata)
+                .ui.message.red
+                    p= hata
             button.ui.inverted.button.green(type='submit')  Yeni Kayıt Al
             button.ui.inverted.button.grey Müşteri Listesine Dön
+
+
+                
