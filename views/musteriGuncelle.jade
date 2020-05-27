@@ -10,20 +10,21 @@ block content
                     h2 Müşteri Güncelleme
                 .eleven.wide.column.right.floated 
                     .ui.fluid.action.inverted.transparent.input.big(type='text', placeholder='39944023936') TC :
-                        input(type='text', name="silinecekTc", placeholder=' Güncellenecek kişinin TC Kimlik Numarasını Giriniz...')
+                        input(type='text', name="silinecekTc", placeholder=' Silinecek kişinin TC Kimlik Numarasını Giriniz...')
                         button.ui.inverted.button.red(type='submit')  Sil
 
     .ui.inverted.segment.center.aligned
         .ui.container
          form(method='post')
-
+            .ui.input.fluid.inverted.big.transparent TC :
+                input(type='text', placeholder=' Güncellenecek kişinin TC Kimlik Numarasını Giriniz...', name="guncellenecekTc")
             br
             .ui.label.black.big Oda No :
             .ui.compact.menu
-                select.ui.dropdown.simple Oda No 
+                select.ui.dropdown.simple(name='roomNo') Oda No 
                     i.dropdown.icon 
                         if(rooms)
-                            each val in  rooms 
+                            each val in rooms
                                 option #{ val.no }
             br
             br
@@ -34,51 +35,43 @@ block content
             br
             .ui.label.big.black  Ad :
             .ui.input
-                input(type='text', placeholder='Erdem', name="ad")
+                input(type='text', placeholder='Erdem', name="name")
             br
             br
             .ui.label.big.black Soyad:
             .ui.input
-                input(type='text', placeholder='Bektaş', name="soyad")
+                input(type='text', placeholder='Bektaş', name="surname")
             br 
             br 
             .ui.label.big.black Telefon Numarası : 
             .ui.input
-                input(type='text', placeholder='05544386850', name="telNo")
+                input(type='text', placeholder='05544386850', name="telno")
             br 
             br 
             .ui.label.big.black Kayıt Tarihi :
-            .ui.compact.menu
-                #standard_calendar.ui.calendar
-                .ui.input.left.icon
-                    i.calendar.icon
-                    input#datepicker(type='text',placeholder='Date/Time')
-            br 
-            br 
+            .ui.input
+                i.calendar.icon.inverted
+                input(type='text', placeholder='Gün/Ay/Yıl', name="entryTime")
+            .ui.big.header.red Kayıt Tarihi (Gün/Ay/Yıl) şeklinde olmalıdır.
+            .ui.label.big.black Çıkış Tarihi :
+            .ui.input
+                i.calendar.icon.inverted
+                input(type='text', placeholder='Gün/Ay/Yıl', name="outTime")
+            .ui.big.header.red Çıkış Tarihi (Gün/Ay/Yıl) şeklinde olmalıdır.
             .ui.label.big.black Ücret :
             .ui.input
-                input(type='text', placeholder='Ücret', name="ucret")
+                input(type='text', placeholder='Ücret', name="payment")
             br
             br
             .ui.label.big.black Ücret Alındı Mı
             .ui.label.big
                 .ui.fitted.checkbox
-                    input(type='checkbox', checked='false', name="odemeAlindiMi", value=false)
+                    input(type='checkbox', checked='false', name="isPaymentReceived", value=false)
                     label 
             br
             br
-            .ui.label.big
-                .grouped.fields
-                    label Ödeme Alındı mı ?
-                    .field
-                        .ui.radio.checkbox
-                            input(type='radio', name='frequency')
-                            label Alındı
-                    .field
-                        .ui.radio.checkbox
-                            input(type='radio', name='frequency', checked='checked')
-                            label Alınmadı
-            br
-            br
-            button.ui.inverted.button.green Yeni Kayıt Al
-            button.ui.inverted.button.grey Müşteri Listesine Dön
+            .ui.message.green
+                p= mesaj
+
+
+            button.ui.inverted.button.green(type='submit') Bilgileri Güncelle

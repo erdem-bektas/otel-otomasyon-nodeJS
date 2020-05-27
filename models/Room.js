@@ -11,7 +11,7 @@ const RoomSchema = new Schema({
     dailyPrice:{
         type:Number,
     },
-    renterId:{
+    renterTc:{
         type: String,
         default:NaN
     },

@@ -23,13 +23,12 @@ router.get('/ekle',(req,res)=>{
  // }
 });
 
-
 router.post('/ekle',(req,res)=>{
   const data =req.body;
   if(data.isPaymentReceived=="on"){
     data.isPaymentReceived=true;
    }
-   
+
    const customer=new Customer({
     name: data.name,
     surname:data.surname,
@@ -58,21 +57,14 @@ router.post('/ekle',(req,res)=>{
   });
 });
 
-
-
 router.get('/guncelle',(req,res)=>{
-  if(req.session.isAdmin || req.session.isUser){
-  const promise=Room.find({ });
-
-  promise.then((room)=>{
-    res.render('musteriGuncelle',{room, isAdmin:req.session.isAdmin });
-    //return room
+  const promise=Room.find({ isUsable:true });
+  promise.then((rooms)=>{
+    res.render('musteriGuncelle',{rooms});
   }).catch((err)=>{
     res.json(err);
   });
-  }else{
-    res.render('index',{ isAdmin:req.session.isAdmin});
-  }
+
 });
 
 // silme
@@ -89,27 +81,68 @@ router.get('/guncelle',(req,res)=>{
 //   });
 // });
 
+// önceki-sonraki odanın bilgisini değiştir.
+
 
 router.post('/guncelle',(req,res)=>{
   const data=req.body;
   //res.json(data);
-  const promise=Customer.findOne({ 
-    tcno: "39944023933"
-   }).findOneAndUpdate({
-    name:"değişen ad",
-    surname:"değişen soyad",
-    tcno:"12345678912",
-    roomNo:103
-  });
 
-  promise.then((customer)=>{
-    //res.render('',{customer,isAdmin:req.session.isAdmin});
-    res.json(customer);
-    return room
-  }).catch((err)=>{
+  if(data.isPaymentReceived=="on"){
+    data.isPaymentReceived=true;
+   }
+
+   // önceki oda numarasını sonraki yap
+
+   // önceki oda numarası bilgisini güncelle 
+   // sonraki oda bilgisini güncelle 
+   // customer de bilgi güncelle 
+
+   // önce kişi bilgilerini al - oda bilgileri güncelle, kişi bilgileri güncelle
+
+   const promise=Customer.find({ tcno: data.guncellenecekTc });
+
+   promise.then(Room.findOneAndUpdate({ no: 111  },{ isUsable: true },(err,room)=>{
+     if(err)
+     res.json(err)
+   }))
+   .then(Room.findOneAndUpdate({ no: 102  },{isUsable: false },(err,room)=>{
+    if(err)
+    res.json(err)
+    res.render('musteriGuncelle',{ mesaj:"Güncelleme Başarılı"});
+    //güncellendi yaz - mesaja 
+  }))
+  .catch((err)=>{
     res.json(err);
   });
+
+
+
+  // promise.then(
+  //   Customer.findOne({ 
+  //   tcno: data.guncellenecekTc
+  //  }).findOneAndUpdate({
+  //   name: data.ad,
+  //   surname: data.soyad,
+  //   tcno: data.tcno,
+  //   roomNo: 103,
+  //   telno:data.telno,
+  //   entryTime: data.entryTime,
+  //   outTime: data.outTime,
+  //   payment: data.ucret,
+  //   isPaymentReceived: data.isPaymentReceived
+  // }), (err,data)=>{
+  //   if(err)
+  //     res.json(err);
+  // })
+    // .catch((err)=>{
+    //     res.json(err);
+    //   });
 });
+
+
+
+
 
 
 router.get('/',(req,res)=>{
@@ -131,7 +164,6 @@ router.get('/listele',(req,res)=>{
   });
 
 });
-
 
 router.post('/ara',(req,res)=>{
   const promise=Customer.find({
