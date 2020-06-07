@@ -8,10 +8,31 @@ const Customer = require('../models/Customer');
 const Room = require('../models/Room');
 const User = require('../models/Users');
 
-router.get('/', (req, res) => {
+router.get('/', (req, res) => {  
   res.render('index',{ isAdmin:req.session.isAdmin, isUser: req.session.isUser });
 
 });
+
+router.get('/sifreDegistir', (req, res) => {  
+  res.render('sifreDegistir',{ isAdmin:req.session.isAdmin, isUser: req.session.isUser });
+
+  const data = req.body;
+  const promise=User.findByIdAndUpdate({
+    pass:data.pass
+  },
+  {
+    pass:data.new_pass
+  })
+
+  promise.then((user)=>{
+    res.redirect('/oturum')
+  }).catch((err)=>{
+    res.json(err);
+  });
+
+
+});
+
 
 router.get('/index', (req, res) => {
   req.session.destroy((err)=>{
@@ -40,11 +61,7 @@ router.post('/kaydol',(req,res)=>{
   const data = req.body;
   const parola= data.pass;
   // if (parola.search(/[a-z]/) < 0)
-     
-  console.log(parola.search(/  (?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g") /) );
-
-   res.json(data)
-   
+  console.log(parola.search(/  (?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]) /) );
 
   // const promise=User.insertMany({
   //   username: data.username,
@@ -58,7 +75,6 @@ router.post('/kaydol',(req,res)=>{
   // });
 
 });
-
 
 router.get('/oturum', (req, res, next) => {
   res.render('oturum',{ isAdmin:req.session.isAdmin, isUser: req.session.isUser});

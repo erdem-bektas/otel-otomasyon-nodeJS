@@ -1,3 +1,5 @@
+'use strict'
+
 const express = require('express');
 const router = express.Router();
 
@@ -61,7 +63,6 @@ router.get('/sil', (req, res) => {
     res.json(err);
   });
 });
-
 
 router.post('/sil', (req, res) => {
   const data =req.body;

@@ -9,19 +9,15 @@ const Room=require('../models/Room');
 
 
 router.get('/ekle',(req,res)=>{
-  //if(req.session.isAdmin || req.session.isUser){
     const promise=Room.find({ isUsable:true });
     promise.then((rooms)=>{
-      res.render('musteriEkle',{rooms});
+      res.render('musteriEkle',{rooms , isAdmin:req.session.isAdmin});
       //res.json(room)
     }).catch((err)=>{
       res.json(err);
     });
- // }
- // else{
- //   res.render('index', { isAdmin:req.session.isAdmin });
- // }
-});
+
+}); 
 
 router.post('/ekle',(req,res)=>{
   const data =req.body;
