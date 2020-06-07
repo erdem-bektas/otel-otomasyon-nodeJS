@@ -11,13 +11,14 @@ router.get('/', (req, res) => {
 
 });
 
-router.get('/destroy', (req, res) => {
+router.get('/index', (req, res) => {
   req.session.destroy((err)=>{
-    res.render('index', { isAdmin:req.session.isAdmin, isUser: req.session.isUser })
+    res.render('index', { isAdmin:false, isUser: false })
     if(err){
       res.json(err)
     }
   });
+
 });
 
 router.get('/iletisim', (req, res, next) => {
@@ -34,16 +35,31 @@ router.get('/kaydol', (req, res, next) => {
 });
 
 router.post('/kaydol',(req,res)=>{
-  const promise=User.insertMany({
-    username: "customer1",
-    pass:"surname1"
-   });
+  const data = req.body;
 
-  promise.then((user)=>{
-    res.json(user)
-  }).catch((err)=>{
-    res.json(err);
-  });
+
+  const parola= data.pass;
+
+  // if (parola.search(/[a-z]/) < 0)
+
+     
+  console.log(parola.search(/  (?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g") /) );
+
+   res.json(data)
+   
+
+
+  // const promise=User.insertMany({
+  //   username: data.username,
+  //   pass: data.pass
+  //  });
+
+  // promise.then((user)=>{
+  //   res.json(user)
+  // }).catch((err)=>{
+  //   res.json(err);
+  // });
+
 });
 
 
@@ -78,8 +94,6 @@ router.post('/oturum', (req, res, next) => {
 
 
 });
-
-
 
 router.get('/newcustomer', (req, res) => {
   const customer = new Customer({

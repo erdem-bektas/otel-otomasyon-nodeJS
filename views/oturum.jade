@@ -19,8 +19,7 @@ block content
                                 input(type='password', name='pass', placeholder='Password')
                             br
                             br
-                            button.ui.inverted.button.green.big(type='submit') Login
-                            br
+                            button.ui.inverted.button.green.big(type='submit') Oturum Aç
 
                     if(oturumHatasi)
                         .ui.message.inverted.red
@@ -29,4 +28,7 @@ block content
                     .ui.message.inverted
                         | Yeni misin ?  
                         a(href='/kaydol') Kaydol
+                        br
+                        | Şifre Değiştir ? 
+                        a(href='/oturum') Şifre Değiştir
 

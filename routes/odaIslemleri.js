@@ -14,21 +14,6 @@ router.get('/listele',(req,res,next)=>{
   })
 });
 
-router.get('/new', function(req, res, next) {
-    const room = new Room({
-      no:101,
-      dailyPrice:200,
-      renterId:"5ebc1384d5cf0d124ce2b7b1"
-    });
-
-    room.save((err,data)=>{
-        if(err)
-        console.log(err);
-        res.json(data);
-    });
-
-});
-
 router.post('/',(req,res)=>{
   const data=req.body;
 
@@ -68,19 +53,18 @@ router.get('/ekle',(req,res)=>{
 });
 
 router.post('/ekle',(req,res)=>{
-  const promise=Room.insertMany({
-    no:200
-   });
+  const room=new Room(req.body);
+  const promise=room.save();
 
   promise.then((room)=>{
     res.json(room)
+
   }).catch((err)=>{
     res.json(err);
   });
+
+  
 });
-
-
-
 
 router.get('/guncelle',(req,res)=>{
   const promise=Room.find({ });
@@ -94,7 +78,7 @@ router.get('/guncelle',(req,res)=>{
 
 router.post('/guncelle',(req,res)=>{
   const data=req.body;
-
+//odaYeniNo
   const promise=Room.updateOne({ 
     no: 104 
   },

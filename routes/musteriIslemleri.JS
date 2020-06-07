@@ -41,20 +41,24 @@ router.post('/ekle',(req,res)=>{
     outTime:data.outTime,
    });
 
-    const promise = Room.findOneAndUpdate({ no: customer.roomNo },{
-      isUsable:false,
-      renterTc:data.tcno
+    const promise = customer.save();
+    promise.then(data=>{
+      res.redirect('/');
+    })
+    .then(()=>{
+
+      Room.findOneAndUpdate({ no: customer.roomNo },{
+              isUsable:false,
+              renterTc:data.tcno
+            });
+
+    })
+    .catch(err=>{
+      res.json(err);
     });
 
-   promise.then((customer)=>{
-    customer.save((err)=>{
-          if(err)
-            res.json(err)
-          res.json(data)
-        });
-     }).catch((err)=>{
-    res.json(err);
-  });
+   
+
 });
 
 router.get('/guncelle',(req,res)=>{
@@ -92,14 +96,6 @@ router.post('/guncelle',(req,res)=>{
     data.isPaymentReceived=true;
    }
 
-   // önceki oda numarasını sonraki yap
-
-   // önceki oda numarası bilgisini güncelle 
-   // sonraki oda bilgisini güncelle 
-   // customer de bilgi güncelle 
-
-   // önce kişi bilgilerini al - oda bilgileri güncelle, kişi bilgileri güncelle
-
    const promise=Customer.find({ tcno: data.guncellenecekTc });
 
    promise.then(Room.findOneAndUpdate({ no: 111  },{ isUsable: true },(err,room)=>{
@@ -110,7 +106,6 @@ router.post('/guncelle',(req,res)=>{
     if(err)
     res.json(err)
     res.render('musteriGuncelle',{ mesaj:"Güncelleme Başarılı"});
-    //güncellendi yaz - mesaja 
   }))
   .catch((err)=>{
     res.json(err);
@@ -140,11 +135,6 @@ router.post('/guncelle',(req,res)=>{
     //   });
 });
 
-
-
-
-
-
 router.get('/',(req,res)=>{
   if(req.session.isAdmin){
     res.render('musteriIslemleri',{ isAdmin:req.session.isAdmin });
@@ -167,7 +157,7 @@ router.get('/listele',(req,res)=>{
 
 router.post('/ara',(req,res)=>{
   const promise=Customer.find({
-    tcno: 39944023932
+    tcno: /322/
    });
 
   promise.then((customer)=>{

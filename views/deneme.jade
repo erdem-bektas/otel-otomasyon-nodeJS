@@ -5,6 +5,10 @@ extends layout
 block content 
     .ui.inverted.segment
         .ui.container
-            if(a)
-                p= a
+            form(method='GET')
+                .ui.label.big.black  Ad :
+                .ui.input
+                    input(type='text', placeholder='Erdem', name="name")
                 br
+                button.ui.inverted.button.green(type='submit')  Yeni Kayıt Al
+

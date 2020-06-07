@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// room no unique ve required olmalı 
 const RoomSchema = new Schema({
     no:{
         type:Number,
@@ -10,6 +9,7 @@ const RoomSchema = new Schema({
     },
     dailyPrice:{
         type:Number,
+        required:true
     },
     renterTc:{
         type: String,

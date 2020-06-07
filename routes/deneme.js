@@ -23,9 +23,15 @@ router.get('/',(req,res)=>{
     res.render('deneme',{ a : req.session.page_views} );
     }
 
-
 });
 
+
+
+router.get('/:id',(req,res)=>{
+  const data=req.params.id;
+  res.send(data)
+
+});
 
 router.get('/backUp',(req,res)=>{
   let room;
@@ -39,11 +45,7 @@ router.get('/backUp',(req,res)=>{
     .catch((err)=>{
       res.json(err);
     });
-  });
-
-    
-
-
+});
 
 router.post('/',(req,res)=>{
   res.end("post calisti")
