@@ -55,9 +55,6 @@ router.post('/ekle',(req,res)=>{
     .catch(err=>{
       res.json(err);
     });
-
-   
-
 });
 
 router.get('/guncelle',(req,res)=>{
@@ -69,23 +66,6 @@ router.get('/guncelle',(req,res)=>{
   });
 
 });
-
-// silme
-// router.post('/guncelle',(req,res)=>{
-//   const promise = Customer.findOneAndDelete({
-//     tcno: "12345678912"
-//   });
-
-//   promise.then((customer)=>{
-//     //res.render('',{customer, isAdmin:req.session.isAdmin });
-//     res.json(customer);
-//   }).catch((err)=>{
-//     res.json(err);
-//   });
-// });
-
-// önceki-sonraki odanın bilgisini değiştir.
-
 
 router.post('/guncelle',(req,res)=>{
   const data=req.body;

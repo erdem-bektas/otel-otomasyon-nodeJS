@@ -1,0 +1,66 @@
+extends layout
+    
+
+block content 
+    .ui.inverted.segment.center.aligned
+        .ui.container
+            h1 Rezervasyon Yap
+
+
+    .ui.inverted.segment.center.aligned
+        .ui.container
+         form(method='post')
+            br
+            .ui.label.black.big Oda No :
+            .ui.compact.menu
+                select.ui.dropdown.simple(name='roomNo') Oda No 
+                    i.dropdown.icon 
+                        if(rooms)
+                            each val in rooms
+                                option #{ val.no }
+            br
+            br
+            .ui.label.black.big TC Kimlik No : 
+            .ui.input
+                input(type='text', placeholder='39944023936', name="tcno")
+            br
+            br
+            .ui.label.big.black  Ad :
+            .ui.input
+                input(type='text', placeholder='Erdem', name="name")
+            br
+            br
+            .ui.label.big.black Soyad:
+            .ui.input
+                input(type='text', placeholder='Bektaş', name="surname")
+            br 
+            br 
+            .ui.label.big.black Telefon Numarası : 
+            .ui.input
+                input(type='text', placeholder='05544386850', name="telNo")
+            br 
+            br 
+            .ui.label.big.black Kayıt Tarihi :
+            .ui.input
+                i.calendar.icon.inverted
+                input(type='text', placeholder='Gün/Ay/Yıl', name="entryTime")
+            .ui.big.header.red Kayıt Tarihi (Gün/Ay/Yıl) şeklinde olmalıdır.
+            .ui.label.big.black Çıkış Tarihi :
+            .ui.input
+                i.calendar.icon.inverted
+                input(type='text', placeholder='Gün/Ay/Yıl', name="outTime")
+            .ui.big.header.red Çıkış Tarihi (Gün/Ay/Yıl) şeklinde olmalıdır.
+            br 
+            .ui.label.big.black Ücret :
+            .ui.input
+                input(type='text', placeholder='Ücret', name="payment")
+            br
+            br
+            br
+            if(hata)
+                .ui.message.red
+                    p= hata
+            button.ui.inverted.button.green(type='submit')  Rezervasyon Yap
+
+
+                

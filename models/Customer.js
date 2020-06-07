@@ -26,13 +26,13 @@ const CustomerSchema = new Schema({
         type:Number
     },
     entryTime:{
-
+        type:String
     },
     outTime:{
-
+        type:String
     },
     payment:{
-
+        type:String
     },
     isPaymentReceived:{
         type:Boolean,

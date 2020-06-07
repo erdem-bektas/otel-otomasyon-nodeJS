@@ -1,0 +1,37 @@
+extends layout
+    
+
+block content 
+    .ui.inverted.segment.center.aligned
+        .ui.container
+            h1 Rezervasyon Yap
+
+
+    .ui.inverted.segment.center.aligned
+        .ui.container
+         form(method='post')
+            br
+            .ui.label.black.big Oda No :
+            .ui.compact.menu
+                select.ui.dropdown.simple(name='roomNo') Oda No 
+                    i.dropdown.icon 
+                        if(rooms)
+                            each val in rooms
+                                option #{ val.no }
+            br
+            br
+            .ui.label.black.big TC Kimlik No : 
+            .ui.input
+                input(type='text', placeholder='39944023936', name="tcno")
+            br
+            br
+            
+            
+            br
+            if(hata)
+                .ui.message.red
+                    p= hata
+            button.ui.inverted.button.green(type='submit')  Rezervasyon Yap
+
+
+                
