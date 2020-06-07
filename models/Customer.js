@@ -13,6 +13,7 @@ const CustomerSchema = new Schema({
     tcno:{
         type:String,
         unique:true,
+        required:true,
         maxlength:11
     },
     telno:{
@@ -38,7 +39,6 @@ const CustomerSchema = new Schema({
         type:Boolean,
         default:false
     }
-
 });
 
 

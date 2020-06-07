@@ -64,8 +64,6 @@ router.post('/ekle',(req,res)=>{
   }).catch((err)=>{
     res.json(err);
   });
-
-  
 });
 
 router.get('/guncelle',(req,res)=>{

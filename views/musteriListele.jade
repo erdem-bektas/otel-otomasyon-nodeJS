@@ -2,16 +2,15 @@ extends layout
     
 
 block content 
-    .ui.inverted.segment.center.aligned
+    .ui.inverted.segment
         .ui.container
             .ui.grid
-                .fourteen.wide.column
-                    h1 Müşteri Listesi
-                .two.wide.column.right.floated 
+                .five.wide.column
+                    h1 Müşteri işlemleri
+                .eleven.wide.column.right.floated 
                     .ui.fluid.action.inverted.transparent.input
-                        button.ui.inverted.button.green  Export
-
-
+                        input(type='text', placeholder='Arama')
+                        button.ui.inverted.button.secondary  Search
 
     .ui.inverted.segment
         .ui.grid

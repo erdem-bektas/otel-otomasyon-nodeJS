@@ -10,14 +10,12 @@ const User = require('../models/Users');
 
 router.get('/', (req, res) => {  
   res.render('index',{ isAdmin:req.session.isAdmin, isUser: req.session.isUser });
-
 });
 
 router.get('/sifreDegistir', (req, res) => {  
   res.render('sifreDegistir',{ isAdmin:req.session.isAdmin, isUser: req.session.isUser });
-
   const data = req.body;
-  const promise=User.findByIdAndUpdate({
+  const promise=User.findOneAndUpdate({
     pass:data.pass
   },
   {
@@ -29,8 +27,6 @@ router.get('/sifreDegistir', (req, res) => {
   }).catch((err)=>{
     res.json(err);
   });
-
-
 });
 
 
@@ -60,20 +56,19 @@ router.get('/kaydol', (req, res, next) => {
 router.post('/kaydol',(req,res)=>{
   const data = req.body;
   const parola= data.pass;
-  // if (parola.search(/[a-z]/) < 0)
+  if (parola.search(/[a-z]/) < 0){
   console.log(parola.search(/  (?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]) /) );
+  const promise=User.insertMany({
+    username: data.username,
+    pass: data.pass
+   });
 
-  // const promise=User.insertMany({
-  //   username: data.username,
-  //   pass: data.pass
-  //  });
-
-  // promise.then((user)=>{
-  //   res.json(user)
-  // }).catch((err)=>{
-  //   res.json(err);
-  // });
-
+  promise.then((user)=>{
+    res.json(user)
+  }).catch((err)=>{
+    res.json(err);
+  });
+}
 });
 
 router.get('/oturum', (req, res, next) => {
@@ -83,14 +78,12 @@ router.get('/oturum', (req, res, next) => {
 router.post('/oturum', (req, res, next) => {
   const data = req.body;
   const promise=User.findOne({ username:data.username , pass:data.pass });
-  //oda numarasına göre sıralar
   promise.then((user)=>{
     if(user){
       req.session.isUser=true; 
       req.session.isAdmin=false;
       if(user.isAdmin===true){
-        req.session.isAdmin=true; //admindir
-        //res.send(req.session.isAdmin)
+        req.session.isAdmin=true;
         res.render('index', { isAdmin: req.session.isAdmin, isUser : req.session.isUser } )
       }
       else{
@@ -104,8 +97,6 @@ router.post('/oturum', (req, res, next) => {
   }).catch((err)=>{
     res.json(err);
   });
-
-
 });
 
 router.get('/newcustomer', (req, res) => {

@@ -34,9 +34,7 @@ router.post('/',(req,res)=>{
     entryTime:data.entryTime,
     outTime:data.outTime,
     });
-
     //const promise = customer.save();
-
     const promise = Room.findOneAndUpdate({ no: customer.roomNo },{
         isUsable:false,
         renterTc:data.tcno

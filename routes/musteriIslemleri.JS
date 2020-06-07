@@ -130,14 +130,17 @@ router.get('/listele',(req,res)=>{
 
 });
 
+
 router.post('/ara',(req,res)=>{
+  const data= req.body;
+  let aranacak=data.tcno
   const promise=Customer.find({
-    tcno: /322/
+    tcno: /aranacak/
    });
 
   promise.then((customer)=>{
-    res.json(customer);
-  }).catch((err)=>{
+    res.render('musteriListele', { isAdmin:req.session.isAdmin , customer } )
+    }).catch((err)=>{
     res.json(err);
   });
 });

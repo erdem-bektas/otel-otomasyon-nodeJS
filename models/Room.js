@@ -31,8 +31,6 @@ const RoomSchema = new Schema({
         type:Number,
         default:1
     }
-
-
 });
 
 
