@@ -13,10 +13,12 @@ block content
 
     .ui.inverted.segment.center.aligned
         .ui.container 
+         form(method='post')
+
             br
             .ui.label.black.big Değiştirilecek Oda No :
             .ui.compact.menu
-                select.ui.dropdown.simple Oda No 
+                select.ui.dropdown.simple(name='roomNo') Oda No 
                     i.dropdown.icon 
                         if(rooms)
                             each val in  rooms 
@@ -25,13 +27,13 @@ block content
             br
             .ui.label.black.big Oda Yeni No : 
             .ui.input
-                input(type='number',min="100", placeholder='109', name="no" )
+                input(type='number',min="100", placeholder='109', name="yeniOdaNo" )
             br
             br
 
             .ui.label.black.big Günlük Ücret : 
             .ui.input
-                input(type='number',min="1", placeholder='200', name="odaYeniNo" )
+                input(type='number',min="1", placeholder='200', name="ucret" )
             br
             br
             .ui.label.big.black  Odanın Kapasitesi:
@@ -39,5 +41,5 @@ block content
                 input(type='number',min="1", placeholder='1', name="guncelle_odaKapasite" )
             br
             br
-            button.ui.inverted.button.green  Oda Ücretini Güncelle
+            button.ui.inverted.button.green(type='submit')  Oda Ücretini Güncelle
             br

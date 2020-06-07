@@ -76,24 +76,25 @@ router.get('/guncelle',(req,res)=>{
   });
 });
 
+
 router.post('/guncelle',(req,res)=>{
   const data=req.body;
-//odaYeniNo
   const promise=Room.updateOne({ 
-    no: 104 
+    no:data.roomNo
   },
   {
-    no:111,
-    dailyPrice:111,
-    capacityOfTheRoom: 11
+    no: data.yeniOdaNo,
+    dailyPrice: data.ucret,
+    capacityOfTheRoom: data.guncelle_odaKapasite
   });
 
   promise.then((room)=>{
-    res.json(room)
-
+    //res.json(room)
+    res.redirect('/oda/listele')
   }).catch((err)=>{
     res.json(err);
   })
+
 });
 
 router.post('/sil',(req,res)=>{

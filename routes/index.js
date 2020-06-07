@@ -36,18 +36,13 @@ router.get('/kaydol', (req, res, next) => {
 
 router.post('/kaydol',(req,res)=>{
   const data = req.body;
-
-
   const parola= data.pass;
-
   // if (parola.search(/[a-z]/) < 0)
-
      
   console.log(parola.search(/  (?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g") /) );
 
    res.json(data)
    
-
 
   // const promise=User.insertMany({
   //   username: data.username,

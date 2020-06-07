@@ -43,10 +43,9 @@ router.post('/ekle',(req,res)=>{
 
     const promise = customer.save();
     promise.then(data=>{
-      res.redirect('/');
+      res.redirect('/musteri/listele');
     })
     .then(()=>{
-
       Room.findOneAndUpdate({ no: customer.roomNo },{
               isUsable:false,
               renterTc:data.tcno
