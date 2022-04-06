@@ -5,6 +5,7 @@
 <li>It is an online platform where customers who will be guests of the hotel can access their room information by sign up.
 </li>
 ## Database Connection 
+
 in helper/db.js <"mongodb connection link"> mongodb connection string  should be pasted 
 
 ```sh
