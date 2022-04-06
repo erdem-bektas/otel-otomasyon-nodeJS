@@ -1,10 +1,9 @@
 # Otel Otomasyon with NodeJS and PugJs
-
-One of the projects I developed during my undergraduate education
-
-- Hotel employees can manage room information (number of occupied/empty rooms, room price, capacity, etc.) in the hotel
-- It is an online platform where customers who will be guests of the hotel can access their room information by sign up.
-
+<p>One of the projects I developed during my undergraduate education</p>
+<li>Hotel employees can manage room information (number of occupied/empty rooms, room price, capacity, etc.) in the hotel
+</li>
+<li>It is an online platform where customers who will be guests of the hotel can access their room information by sign up.
+</li>
 ## Database Connection 
 in helper/db.js <"mongodb connection link"> mongodb connection string  should be pasted 
 ```sh
