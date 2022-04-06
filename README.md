@@ -1,17 +1,13 @@
 # Otel Otomasyon with NodeJS and PugJs
-<p>One of the projects I developed during my undergraduate education</p>
-<li>Hotel employees can manage room information (number of occupied/empty rooms, room price, capacity, etc.) in the hotel
-</li>
-<li>It is an online platform where customers who will be guests of the hotel can access their room information by sign up.
-</li>
+One of the projects I developed during my undergraduate education
+- Hotel employees can manage room information (number of occupied/empty rooms, room price, capacity, etc.) in the hotel
+- It is an online platform where customers who will be guests of the hotel can access their room information by sign up.
+
 ## Database Connection 
-
 in helper/db.js <"mongodb connection link"> mongodb connection string  should be pasted 
-
 ```sh
 mongoose.connect('<mongodb connection link>')
 ```
-
 ## Models
 
 - Customer
@@ -33,7 +29,6 @@ helper/db.js dosyasında   <"mongodb connection link"> kısmına ilgili mongodb 
 ```sh
 mongoose.connect('<mongodb connection link>')
 ```
-
 ## Veri Yapısı
 - Customer
 -> Kişi bilgilerinin saklanması için oluşturulmuş model yapısıdır.
