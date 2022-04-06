@@ -6,9 +6,11 @@
 </li>
 ## Database Connection 
 in helper/db.js <"mongodb connection link"> mongodb connection string  should be pasted 
+
 ```sh
 mongoose.connect('<mongodb connection link>')
 ```
+
 ## Models
 
 - Customer
@@ -30,6 +32,7 @@ helper/db.js dosyasında   <"mongodb connection link"> kısmına ilgili mongodb 
 ```sh
 mongoose.connect('<mongodb connection link>')
 ```
+
 ## Veri Yapısı
 - Customer
 -> Kişi bilgilerinin saklanması için oluşturulmuş model yapısıdır.
